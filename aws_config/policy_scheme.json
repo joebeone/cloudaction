@@ -1,0 +1,14 @@
+{
+    "ConditionOperations":[],
+    "conditionKeys" :[],
+    "serviceMap":{
+        "aws_service_name": {
+            "StringPrefix": "",
+            "Actions":[
+
+            ]
+        }
+    },
+    "policyTypes": {},
+    "VPCPolicyServiceActionMap": {}
+}

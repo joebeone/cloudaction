@@ -1,0 +1,13 @@
+{
+  "name": "cloud_action",
+  "version": "1.0.0",
+  "description": "CLI utility for navigating AWS Service Actions and Policy generation with Terraform",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jbennett",
+  "license": "ISC",
+  "dependencies": {
+  }
+}
