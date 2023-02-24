@@ -4,10 +4,19 @@
   "description": "CLI utility for navigating AWS Service Actions and Policy generation with Terraform",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
+  "files": [
+    "aws_config",
+    "aws_services.js",
+    "main.js",
+    "README.md",
+    "test/test_aws_services.js"
+  ],
   "author": "jbennett",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
   }
 }

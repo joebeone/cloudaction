@@ -1,3 +1,4 @@
+
 const fs = require('fs');
 
 // Reads the configuration file and parse the JSON object
