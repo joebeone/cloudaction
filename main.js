@@ -1,6 +1,8 @@
+
 const fs = require('fs');
 const readline = require('readline');
 const { printServiceKeys, generateTerraformPolicy, getServiceActions } = require('./aws_services');
+const { sortResourcesInDirectory } = require('./terraform_standardize.js');
 
 // Read the configuration file and parse the JSON object
 const configStr = fs.readFileSync('./aws_config/policy.json', 'utf8');
@@ -60,6 +62,34 @@ function createHclPolicy() {
     askServiceName();
 }
 
+// Define a function to prompt a user for a terraform project directory and then sort and then sort the resource and modules in each file from least dependent to most dependent.
+function sortHclFiles() {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+    rl.question('Enter path to terraform project directory: ', (path) => {
+        sortResourcesInDirectory(path, (err) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log('HCL policy files sorted successfully.');
+        }
+  
+        displayMenu();
+      });
+    });
+  }
+
+//Header
+function printHeader() {
+    console.log('---------------------------------------');
+    console.log('            CLOUD ACTIONS              ');
+    console.log('  A few tools for automating IaC work  ');
+    console.log('---------------------------------------');
+    console.log('\n');
+  }
+
 // Define a function to display the main menu and handle user input
 function displayMenu() {
     const rl = readline.createInterface({
@@ -72,7 +102,8 @@ function displayMenu() {
     console.log('1. List all services');
     console.log('2. View actions for a service');
     console.log('3. Create an HCL policy file');
-    console.log('4. Exit');
+    console.log('4. Sort HCL policy files');
+    console.log('5. Exit');
 
     rl.question('Option: ', (option) => {
         switch (option) {
@@ -87,6 +118,9 @@ function displayMenu() {
                 createHclPolicy();
                 break;
             case '4':
+                sortHclFiles();
+                break;
+            case '5':
                 rl.close();
                 break;
             default:
@@ -97,6 +131,8 @@ function displayMenu() {
     });
 }
 
+// Display header
+printHeader();
 // Display the main menu
 displayMenu();
 
